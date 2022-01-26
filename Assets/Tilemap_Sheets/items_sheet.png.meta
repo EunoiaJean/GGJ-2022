@@ -201,6 +201,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -1528,6 +1529,66 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      flagGreenHanging.png: -4275308287585709631
+      spikes.png: -3926265130303661907
+      mushroomBrown.png: 8599953219324563264
+      particleBrick2a.png: -7727636469174975982
+      cactus.png: -8919097264593601343
+      fireball.png: -4315606193115657422
+      flagYellow.png: 7363110074433900582
+      gemYellow.png: -3771772365890724818
+      mushroomRed.png: 220012346323780186
+      buttonYellow.png: -4096383752446499499
+      flagGreen2.png: -2499835842040122125
+      particleBrick1b.png: 8515976397874540331
+      star.png: 3650903073793279168
+      keyRed.png: -3795295040037410963
+      bombFlash.png: 3115064413779741036
+      buttonGreen_pressed.png: 7924524115913735563
+      buttonYellow_pressed.png: -33254931501309598
+      particleBrick1a.png: 4222159981078819837
+      particleBrick2b.png: 2545705033821631909
+      gemGreen.png: -3802725611822965098
+      bush.png: 6657324537178511095
+      switchLeft.png: 3240185602467833885
+      plant.png: -7774454736758595063
+      plantPurple.png: 8395940530329711870
+      springboardUp.png: 6468193362984647496
+      rock.png: 3327736858417002033
+      cloud3.png: 290330004407023755
+      flagRedHanging.png: 1106344117160048992
+      flagBlueHanging.png: 6112826072835061990
+      coinGold.png: -4710956717870437865
+      flagRed.png: -5097895617291541653
+      keyBlue.png: 1728948745377709852
+      gemBlue.png: -256801973581565161
+      snowhill.png: -4205602429763167043
+      keyGreen.png: -4988880183757767519
+      weightChained.png: -1717551634050963709
+      bomb.png: 7119481216759300430
+      coinSilver.png: -459709786177091673
+      chain.png: 6907096132663521016
+      switchRight.png: 7664420846738749347
+      flagBlue.png: 4035912747581709671
+      buttonBlue_pressed.png: 596852538972683051
+      buttonRed.png: 7525693508291839157
+      buttonRed_pressed.png: -5939558054009774656
+      flagYellowHanging.png: 7326193642365661019
+      buttonGreen.png: -1364084970762469421
+      coinBronze.png: -1651969604368043
+      cloud2.png: 914164878947841050
+      flagBlue2.png: -2015010036728967258
+      flagYellow2.png: -1254412226569448318
+      switchMid.png: -7941978953435789968
+      buttonBlue.png: 1294019068680278440
+      weight.png: 3170965141710251610
+      flagRed2.png: 402728195652924934
+      keyYellow.png: -2763781504305219086
+      springboardDown.png: -5276876420978729889
+      flagGreen.png: 1446742662751194103
+      gemRed.png: -6515704572662576388
+      cloud1.png: 6202344001185684362
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

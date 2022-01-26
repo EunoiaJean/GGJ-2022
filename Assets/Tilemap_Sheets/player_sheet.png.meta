@@ -168,6 +168,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -1240,6 +1241,55 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      p2_walk03.png: -142458573459493648
+      p1_walk11.png: 5543189387706333459
+      p2_front.png: -6049920677493935570
+      p3_stand.png: 1199843424211354593
+      p2_stand.png: 8898773169832919639
+      p2_walk10.png: 6084387526716379487
+      p3_walk10.png: 4914085654680672671
+      p2_walk05.png: -5811250763931192810
+      p1_walk06.png: 3031560977481277563
+      p2_walk08.png: 5556889481619694622
+      p2_walk09.png: -6034161398541428007
+      p3_duck.png: 6128063032896148648
+      p1_walk10.png: 2279139292022621908
+      p1_duck.png: 9114752392723502198
+      p1_jump.png: 4514827558526509187
+      p2_walk07.png: -4746643784274099168
+      p1_walk05.png: -2534698693922747086
+      p3_walk05.png: 7271744375454293109
+      p3_walk08.png: 550359019019034595
+      p3_walk11.png: -5593014805710269175
+      p1_walk08.png: 6590729885129775983
+      p3_jump.png: -2686746381788181713
+      p3_walk09.png: 2540960964276183406
+      p3_walk04.png: 1122044936849049719
+      p3_walk01.png: -8439970129525249138
+      p2_jump.png: -6864701224574652347
+      p1_walk09.png: -7725686117739990204
+      p3_walk02.png: -1278543945196512426
+      p1_walk03.png: -689305532205714711
+      p2_duck.png: -5318295864387845901
+      p1_walk04.png: -5558350308322174895
+      p3_walk07.png: 2960869947275199431
+      p3_walk06.png: 1769489748437621498
+      p2_walk04.png: 7664556504607130293
+      p3_hurt.png: -3118391814795092911
+      p3_walk03.png: 6591642888833478129
+      p2_walk11.png: 5530740313045963159
+      p3_front.png: -4892621753284677825
+      p1_walk07.png: 6980360863178918340
+      p1_hurt.png: -5505417320043048082
+      p1_walk02.png: 1676560950104597070
+      p1_stand.png: -2694723646580040276
+      p2_walk06.png: -3254143870141892538
+      p1_front.png: -3891687070516867769
+      p1_walk01.png: -7775291570769122451
+      p2_walk01.png: 7285930478196803954
+      p2_walk02.png: 2363135489540032003
+      p2_hurt.png: -8979357503987033585
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
