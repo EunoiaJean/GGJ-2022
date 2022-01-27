@@ -13,8 +13,9 @@ public class CharacterController2D : MonoBehaviour
 	[SerializeField] private Transform m_CeilingCheck;							// A position marking where to check for ceilings
 	[SerializeField] private Collider2D m_CrouchDisableCollider;                // A collider that will be disabled when crouching
 	[SerializeField] private int coyoteTimeFrames = 2; //num of frames of coyote time
+	[SerializeField] private float doubleJumpLockout = 0.1f; //time in seconds to lockout doublejump input after jump
 
-	const float k_GroundedRadius = .05f; // Radius of the overlap circle to determine if grounded
+	const float k_GroundedRadius = .1f; // Radius of the overlap circle to determine if grounded
 	private bool m_Grounded;            // Whether or not the player is grounded.
 	const float k_CeilingRadius = .2f; // Radius of the overlap circle to determine if the player can stand up
 	private Rigidbody2D m_Rigidbody2D;
@@ -22,6 +23,8 @@ public class CharacterController2D : MonoBehaviour
 	private Vector3 m_Velocity = Vector3.zero;
 	private float initGrav; //initial gravity scale
 	private int framesSinceLastGrounded = 0; //tracker for frames since player was last grounded
+	private int doubleJump = 0;
+	private float buffer = -1f;
 
 	[Header("Events")]
 	[Space]
@@ -68,10 +71,20 @@ public class CharacterController2D : MonoBehaviour
 			if (colliders[i].gameObject != gameObject)
 			{
 				m_Grounded = true;
+				doubleJump = 1;
 				if (!wasGrounded)
+				{
+					buffer = -1f;
 					OnLandEvent.Invoke();
+				}
 			}
 		}
+
+        //check if player is in the air
+        if (!m_Grounded && buffer >= 0)
+        {
+			buffer += Time.deltaTime;
+        }
 
 		// Check if the player is falling, change gravity if so
 		if (m_Rigidbody2D.velocity.y < 0 && !m_Grounded && framesSinceLastGrounded > coyoteTimeFrames)
@@ -160,6 +173,14 @@ public class CharacterController2D : MonoBehaviour
 			// Add a vertical force to the player.
 			m_Grounded = false;
 			framesSinceLastGrounded = coyoteTimeFrames + 1;
+			m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce));
+			buffer = 0f;
+		}
+		else if(doubleJump > 0 && jump && buffer > doubleJumpLockout)
+        {
+			doubleJump--;
+			buffer = -1f;
+			m_Rigidbody2D.velocity = new Vector2(m_Rigidbody2D.velocity.x, 0);
 			m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce));
 		}
 	}
