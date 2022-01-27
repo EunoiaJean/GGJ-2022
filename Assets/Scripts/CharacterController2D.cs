@@ -4,20 +4,24 @@ using UnityEngine.Events;
 public class CharacterController2D : MonoBehaviour
 {
 	[SerializeField] private float m_JumpForce = 400f;							// Amount of force added when the player jumps.
-	[Range(0, 1)] [SerializeField] private float m_CrouchSpeed = .36f;			// Amount of maxSpeed applied to crouching movement. 1 = 100%
+	[Range(0, 1)] [SerializeField] private float m_CrouchSpeed = .36f;          // Amount of maxSpeed applied to crouching movement. 1 = 100%
+	[SerializeField] private float m_FallingGravityMultiplier = 1.25f;			// How much to multiply Rigidbody gravity scale by while player is falling
 	[Range(0, .3f)] [SerializeField] private float m_MovementSmoothing = .05f;	// How much to smooth out the movement
 	[SerializeField] private bool m_AirControl = false;							// Whether or not a player can steer while jumping;
 	[SerializeField] private LayerMask m_WhatIsGround;							// A mask determining what is ground to the character
 	[SerializeField] private Transform m_GroundCheck;							// A position marking where to check if the player is grounded.
 	[SerializeField] private Transform m_CeilingCheck;							// A position marking where to check for ceilings
-	[SerializeField] private Collider2D m_CrouchDisableCollider;				// A collider that will be disabled when crouching
+	[SerializeField] private Collider2D m_CrouchDisableCollider;                // A collider that will be disabled when crouching
+	[SerializeField] private int coyoteTimeFrames = 2; //num of frames of coyote time
 
-	const float k_GroundedRadius = .2f; // Radius of the overlap circle to determine if grounded
+	const float k_GroundedRadius = .05f; // Radius of the overlap circle to determine if grounded
 	private bool m_Grounded;            // Whether or not the player is grounded.
 	const float k_CeilingRadius = .2f; // Radius of the overlap circle to determine if the player can stand up
 	private Rigidbody2D m_Rigidbody2D;
 	private bool m_FacingRight = true;  // For determining which way the player is currently facing.
 	private Vector3 m_Velocity = Vector3.zero;
+	private float initGrav; //initial gravity scale
+	private int framesSinceLastGrounded = 0; //tracker for frames since player was last grounded
 
 	[Header("Events")]
 	[Space]
@@ -39,11 +43,21 @@ public class CharacterController2D : MonoBehaviour
 
 		if (OnCrouchEvent == null)
 			OnCrouchEvent = new BoolEvent();
+
+		initGrav = m_Rigidbody2D.gravityScale;
 	}
 
 	private void FixedUpdate()
 	{
 		bool wasGrounded = m_Grounded;
+        if (m_Grounded)
+        {
+			framesSinceLastGrounded = 0;
+        }
+		else if (framesSinceLastGrounded <= coyoteTimeFrames)
+        {
+			framesSinceLastGrounded++;
+        }
 		m_Grounded = false;
 
 		// The player is grounded if a circlecast to the groundcheck position hits anything designated as ground
@@ -58,6 +72,16 @@ public class CharacterController2D : MonoBehaviour
 					OnLandEvent.Invoke();
 			}
 		}
+
+		// Check if the player is falling, change gravity if so
+		if (m_Rigidbody2D.velocity.y < 0 && !m_Grounded && framesSinceLastGrounded > coyoteTimeFrames)
+        {
+			m_Rigidbody2D.gravityScale = initGrav * m_FallingGravityMultiplier;
+        }
+        else
+        {
+			m_Rigidbody2D.gravityScale = initGrav;
+        }
 	}
 
 
@@ -123,11 +147,19 @@ public class CharacterController2D : MonoBehaviour
 				Flip();
 			}
 		}
+		//Apply Coyote time
+		if(jump && framesSinceLastGrounded <= coyoteTimeFrames)
+        {
+			m_Grounded = true;
+			m_Rigidbody2D.velocity = new Vector2(m_Rigidbody2D.velocity.x, 0);
+        }
+
 		// If the player should jump...
 		if (m_Grounded && jump)
 		{
 			// Add a vertical force to the player.
 			m_Grounded = false;
+			framesSinceLastGrounded = coyoteTimeFrames + 1;
 			m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce));
 		}
 	}
