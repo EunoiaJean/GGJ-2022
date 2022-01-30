@@ -23,7 +23,7 @@ public class CharacterController2D : MonoBehaviour
 	private Vector3 m_Velocity = Vector3.zero;
 	private float initGrav; //initial gravity scale
 	private int framesSinceLastGrounded = 0; //tracker for frames since player was last grounded
-	private int doubleJump = 0;
+	public int doubleJump = 0;
 	private float buffer = -1f;
 
 	[Header("Events")]
