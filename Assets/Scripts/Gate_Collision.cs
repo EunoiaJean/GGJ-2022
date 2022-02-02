@@ -6,7 +6,7 @@ public class Gate_Collision : MonoBehaviour
 {
     Player_Movement playerM;
     bool enteredAlive;
-    private void OnTriggerEnter2D(Collision2D other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.tag == "Player")
         {
@@ -18,7 +18,7 @@ public class Gate_Collision : MonoBehaviour
             }
         }
     }
-    private void OnTriggerExit2D(Collision2D other)
+    private void OnTriggerExit2D(Collider2D other)
     {
         if (other.gameObject.tag == "Player")
         {

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(CharacterController2D))]
 public class Player_Movement : MonoBehaviour
@@ -28,6 +29,15 @@ public class Player_Movement : MonoBehaviour
             alive = value;
         }
     }
+    
+    void Start()
+    {
+        int sceneIndex = SceneManager.GetActiveScene().buildIndex;
+        if (SavedPositionManager.savedPositions.ContainsKey(sceneIndex))
+        {
+            transform.position = SavedPositionManager.savedPositions[sceneIndex];
+        }
+    }
 
     void Awake()
     {
@@ -37,6 +47,10 @@ public class Player_Movement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetButtonDown("Reset"))
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
         if(alive)
         {
             horizontalMove = Input.GetAxisRaw("Horizontal") * runSpeed;
@@ -50,10 +64,6 @@ public class Player_Movement : MonoBehaviour
             } else if (Input.GetButtonUp("Crouch"))
             {
                 crouch = false;
-            }
-            if (Input.GetButtonDown("Pause"))
-            {
-
             }
         }
     }

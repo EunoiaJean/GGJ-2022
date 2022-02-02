@@ -7,12 +7,19 @@ public class Switch_Behavior : MonoBehaviour
 {
     //[SerializeReference] private GameObject[] activatables = new GameObject[0];
     [SerializeField] private UnityEvent action;
+    [SerializeField] private bool repeatable;
+    private bool switched = false;
     private void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.gameObject.tag == "Player")
+        if (repeatable || switched != true)
         {
-            action.Invoke();
+            if (other.gameObject.tag == "Player")
+            {
+                action.Invoke();
+                switched = true;
+            }
         }
+
     }
     private void Awake()
     {
